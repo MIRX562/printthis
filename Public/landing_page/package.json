@@ -1,0 +1,26 @@
+{
+	"name": "landing_page",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"db": "npx prisma migrate dev --name init",
+		"dev": "next dev",
+		"build": "next build",
+		"start": "NODE_ENV=production node server.js",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.5.2",
+		"next": "13.5.5",
+		"react": "^18",
+		"react-dom": "^18"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10",
+		"eslint": "^8",
+		"eslint-config-next": "13.5.5",
+		"postcss": "^8",
+		"prisma": "^5.5.2",
+		"tailwindcss": "^3"
+	}
+}
