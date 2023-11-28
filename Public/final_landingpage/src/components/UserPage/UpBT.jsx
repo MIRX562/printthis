@@ -18,7 +18,7 @@ const UploadButton = () => {
 			<button
 				onClick={handleOpenModal}
 				className='rounded-sm px-3 py-1 bg-blue-700 hover:bg-blue-500 text-white focus:shadow-outline focus:outline-none'>
-				Open Upload Dialog
+				Upload File
 			</button>
 
 			<FileUpload isOpen={isModalOpen} onRequestClose={handleCloseModal} />

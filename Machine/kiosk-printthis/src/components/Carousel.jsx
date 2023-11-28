@@ -4,19 +4,16 @@ import React, { useState, useEffect } from 'react';
 function Carousel() {
 	const slides = [
 		{
-			url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
+			url: 'carousel/1.svg',
 		},
 		{
-			url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
+			url: 'carousel/2.svg',
 		},
 		{
-			url: 'https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80',
+			url: 'carousel/3.svg',
 		},
 		{
-			url: 'https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2253&q=80',
-		},
-		{
-			url: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80',
+			url: 'carousel/4.svg',
 		},
 	];
 
@@ -41,7 +38,7 @@ function Carousel() {
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			nextSlide();
-		}, 20000); // 30 seconds
+		}, 15000);
 
 		return () => {
 			clearInterval(intervalId);
@@ -49,7 +46,7 @@ function Carousel() {
 	}, [currentIndex]);
 
 	return (
-		<div className='max-w-screen h-[780px] w-full m-auto pb-16 relative group'>
+		<div className='max-w-screen h-[840px] w-full m-auto pb-16 relative group'>
 			<div
 				style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
 				className='w-screen h-full bg-center bg-cover duration-500'></div>

@@ -24,7 +24,12 @@ const FileUpload = ({ isOpen, onRequestClose }) => {
 
 	const handleInputChange = (event) => {
 		for (const file of event.target.files) {
-			addFile(file);
+			// Check if the file type is JPEG or PDF
+			if (file.type === 'image/jpeg' || file.type === 'application/pdf') {
+				addFile(file);
+			} else {
+				alert('Please upload only JPEG or PDF files.');
+			}
 		}
 	};
 
@@ -43,13 +48,19 @@ const FileUpload = ({ isOpen, onRequestClose }) => {
 		setFiles({});
 	};
 
+	const hiddenInputRef = React.useRef(null);
+
+	const handleButtonClick = () => {
+		hiddenInputRef.current.click();
+	};
+
 	return (
 		<Modal
 			isOpen={isOpen}
 			onRequestClose={onRequestClose}
 			contentLabel='File Upload Modal'
-			className='Modal'
-			overlayClassName='Overlay'>
+			className='Modal absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-8 w-80vw max-w-screen-xl max-h-80 overflow-auto'
+			overlayClassName='Overlay fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex items-center justify-center z-1000'>
 			<div
 				onDrop={handleDrop}
 				onDragOver={(e) => e.preventDefault()}
@@ -62,6 +73,7 @@ const FileUpload = ({ isOpen, onRequestClose }) => {
 							<span>files anywhere or</span>
 						</p>
 						<input
+							ref={hiddenInputRef}
 							id='hidden-input'
 							type='file'
 							multiple
@@ -70,7 +82,8 @@ const FileUpload = ({ isOpen, onRequestClose }) => {
 						/>
 						<button
 							id='button'
-							className='mt-2 rounded-sm px-3 py-1 bg-gray-200 hover:bg-gray-300 focus:shadow-outline focus:outline-none'>
+							className='mt-2 rounded-sm px-3 py-1 bg-gray-200 hover:bg-gray-300 focus:shadow-outline focus:outline-none'
+							onClick={handleButtonClick}>
 							Upload a file
 						</button>
 					</header>
@@ -79,59 +92,58 @@ const FileUpload = ({ isOpen, onRequestClose }) => {
 						To Upload
 					</h1>
 
-					<ul id='gallery' className='flex flex-1 flex-wrap -m-1'>
+					<ul id='gallery' className='flex flex-wrap justify-center -m-1'>
 						{Object.entries(files).map(([objectURL, file]) => (
 							<li
 								key={objectURL}
 								className='block p-1 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-24'>
 								<article
 									tabIndex='0'
-									className='group w-full h-full rounded-md focus:outline-none focus:shadow-outline elative bg-gray-100 cursor-pointer relative shadow-sm'>
+									className='group w-full h-full rounded-md focus:outline-none focus:shadow-outline relative bg-gray-100 cursor-pointer shadow-sm overflow-hidden'>
 									{file.type.match('image.*') && (
 										<img
 											alt='upload preview'
-											className='img-preview hidden w-full h-full sticky object-cover rounded-md bg-fixed'
+											className='img-preview w-full h-full object-cover'
 											src={objectURL}
 										/>
 									)}
 
-									<section className='flex flex-col rounded-md text-xs break-words w-full h-full z-20 absolute top-0 py-2 px-3'>
-										<h1 className='flex-1 group-hover:text-blue-800'>
+									<section className='flex flex-col rounded-md text-xs break-words w-full max-w-full h-full z-20 absolute top-0 py-2 px-3 bg-white'>
+										<h1 className='flex-1 group-hover:text-blue-800 overflow-hidden overflow-ellipsis whitespace-nowrap'>
 											{file.name}
 										</h1>
-										<div className='flex'>
-											<span className='p-1 text-blue-800'>
-												<i>
-													<svg
-														className='fill-current w-4 h-4 ml-auto pt-1'
-														xmlns='http://www.w3.org/2000/svg'
-														width='24'
-														height='24'
-														viewBox='0 0 24 24'>
-														<path d='M15 2v5h5v15h-16v-20h11zm1-2h-14v24h20v-18l-6-6z' />
-													</svg>
-												</i>
-											</span>
-											<p className='p-1 size text-xs text-gray-700'>
-												{file.size > 1024
-													? file.size > 1048576
-														? Math.round(file.size / 1048576) + 'mb'
-														: Math.round(file.size / 1024) + 'kb'
-													: file.size + 'b'}
-											</p>
+										<div className='flex items-center justify-between'>
+											<div className='flex items-center'>
+												<span className='p-1 text-blue-800'>
+													<i>
+														<svg
+															className='fill-current w-4 h-4'
+															xmlns='http://www.w3.org/2000/svg'
+															width='24'
+															height='24'
+															viewBox='0 0 24 24'>
+															<path d='M15 2v5h5v15h-16v-20h11zm1-2h-14v24h20v-18l-6-6z' />
+														</svg>
+													</i>
+												</span>
+												<p className='p-1 size text-xs text-gray-700'>
+													{file.size > 1024
+														? file.size > 1048576
+															? Math.round(file.size / 1048576) + 'mb'
+															: Math.round(file.size / 1024) + 'kb'
+														: file.size + 'b'}
+												</p>
+											</div>
 											<button
-												className='delete ml-auto focus:outline-none hover:bg-gray-300 p-1 rounded-md text-gray-800'
+												className='delete focus:outline-none hover:bg-gray-300 p-1 rounded-md text-gray-800'
 												onClick={() => handleDelete(objectURL)}>
 												<svg
-													className='pointer-events-none fill-current w-4 h-4 ml-auto'
+													className='fill-current w-4 h-4'
 													xmlns='http://www.w3.org/2000/svg'
 													width='24'
 													height='24'
 													viewBox='0 0 24 24'>
-													<path
-														className='pointer-events-none'
-														d='M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z'
-													/>
+													<path d='M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z' />
 												</svg>
 											</button>
 										</div>

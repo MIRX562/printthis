@@ -2,19 +2,19 @@ import React from 'react';
 
 const categories = [
 	{
-		name: 'First Link',
-		imageUrl: '/path/to/first-image.png',
-		url: 'https://example.com/first-link',
+		name: 'UIN Imam Bonjol Padang',
+		imageUrl: '/uinib.png',
+		url: 'https://uinib.ac.id/',
 	},
 	{
-		name: 'Second Link',
-		imageUrl: '/path/to/second-image.png',
-		url: 'https://example.com/second-link',
+		name: 'Fakultas Sains & Teknologi',
+		imageUrl: '/fst.png',
+		url: 'https://saintek.uinib.ac.id/',
 	},
 	{
-		name: 'Third Link',
-		imageUrl: '/path/to/third-image.png',
-		url: 'https://example.com/third-link',
+		name: 'Kementrian Agama',
+		imageUrl: '/kemenag.png',
+		url: 'https://kemenag.go.id/',
 	},
 ];
 
@@ -74,11 +74,11 @@ export default function Footer() {
 									href={category.url}
 									target='_blank'
 									rel='noopener noreferrer'
-									className='text-gray-400 flex flex-col items-center h-full'>
+									className='text-gray-400 flex flex-col text-center items-center h-full'>
 									<img
 										src={category.imageUrl}
 										alt={category.name}
-										className='w-10 h-10 mb-2 rounded-full'
+										className='w-40 h-40 mb-2 '
 									/>
 									<span>{category.name}</span>
 								</a>

@@ -25,7 +25,11 @@ const Scanner = ({ isOpen, onRequestClose }) => {
 			className='Modal'
 			overlayClassName='Overlay'>
 			<div className='modal-content'>
-				<QrReader onScan={handleScan} onError={handleError} />
+				<QrReader
+					onScan={handleScan}
+					onError={handleError}
+					facingMode={'environtment'}
+				/>
 				{scanResult ? <p>Scanned QR Code: {scanResult}</p> : <p>Scanning...</p>}
 				<Button onClick={onRequestClose}>Close Modal</Button>
 			</div>

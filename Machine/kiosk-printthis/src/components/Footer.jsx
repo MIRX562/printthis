@@ -2,13 +2,14 @@ import React from 'react';
 
 export default function Footer() {
 	const items = [
-		'Item 1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis numquam sunt, dolorem quae sit fuga nobis hic enim unde.    ',
-		'Item 2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis numquam sunt, dolorem quae sit fuga nobis hic enim unde.    ',
-		'Item 3 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis numquam sunt, dolorem quae sit fuga nobis hic enim unde.    ',
-		'Item 4 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis numquam sunt, dolorem quae sit fuga nobis hic enim unde.    ',
-		'Item 5 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis numquam sunt, dolorem quae sit fuga nobis hic enim unde.    ',
+		'Dirgahayu UIN Imam Bonjol Padang, 57 tahun mencerdaskan bangsa!',
+		'UIN Imam Bonjol Padang, 57 tahun menginspirasi, 57 tahun menebarkan ilmu!',
+		'UIN Imam Bonjol Padang, 57 tahun mengabdi, 57 tahun membangun negeri!',
+		'UIN Imam Bonjol Padang, 57 tahun berinovasi, 57 tahun menjemput masa depan!',
+		'UIN Imam Bonjol Padang, 57 tahun berjaya, 57 tahun terus melaju!',
 		// Add more items as needed
 	];
+
 	const scrollingText = items.join('. | ');
 
 	return (

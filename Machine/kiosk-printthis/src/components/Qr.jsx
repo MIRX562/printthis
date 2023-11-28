@@ -1,10 +1,14 @@
+// Import necessary libraries and components
 'use client';
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode.react';
 import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from 'next/navigation';
 
+// Define the Qr component
 export default function Qr() {
 	const [qrData, setQrData] = useState('');
+	const router = useRouter();
 
 	useEffect(() => {
 		const generateQrCode = () => {
@@ -28,14 +32,24 @@ export default function Qr() {
 		return () => clearInterval(intervalId);
 	}, []);
 
+	// Function to handle the click event on the QR code
+	const handleQrCodeClick = () => {
+		// Use the router to navigate to the target page
+		router.push('/dashboard');
+	};
+
 	return (
 		<section className='flex'>
 			<div className='h-[840px] w-1/2 flex items-center justify-center'>
 				<img src='/textV.svg' alt='' />
 			</div>
 			<div className='h-[840px] w-1/2 flex items-center justify-center'>
-				<div className='relative p-16 rounded-3xl bg-white border-[15px] border-slate-900'>
-					<QRCode size={200} value={qrData} />
+				<div
+					className='relative p-10 rounded-3xl bg-white border-[15px] border-slate-900'
+					onClick={handleQrCodeClick} // Attach the click event handler
+					style={{ cursor: 'pointer' }} // Change cursor style to indicate it's clickable
+				>
+					<QRCode size={256} value={qrData} />
 				</div>
 			</div>
 		</section>

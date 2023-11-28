@@ -1,5 +1,7 @@
 import { Inter } from 'next/font/google';
-import './globals.css';
+import '@/style/globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,9 +16,11 @@ export default function RootLayout({ children }) {
 			<body
 				className={
 					inter.className +
-					'min-w-[1080] min-h-[1920] bg-gradient-to-tl from-sky-100 via-sky-200 to-sky-300'
+					'min-w-screen min-h-screen bg-gradient-to-tl from-sky-100 via-sky-200 to-sky-300 bg-no-repeat'
 				}>
+				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
